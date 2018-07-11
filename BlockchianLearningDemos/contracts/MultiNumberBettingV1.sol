@@ -26,8 +26,8 @@ contract MultiNumberBettingV1 {
       return flag;
     } 
 
-    function totalGuesses() public view returns (uint){
-      return (winnerCount + loserCount);
+    function totalGuesses() returns (uint){
+      return (winnerCount+loserCount);
     }
 
      constructor(uint8 num1, uint8 num2, uint8 num3) public {

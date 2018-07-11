@@ -1,8 +1,9 @@
 
 // Get an instance of the contract 
-var DemoContract = artifacts.require("./DemoContract.sol");
+var MultiNumberBettingV1 = artifacts.require("./MultiNumberBettingV1.sol");
 
 module.exports = function(deployer) {
   // Deploy the instance of the contract 
-  deployer.deploy(DemoContract);
+  // Number passed to constructor 1,3,9
+  deployer.deploy(MultiNumberBettingV1,1,3,9);
 };
