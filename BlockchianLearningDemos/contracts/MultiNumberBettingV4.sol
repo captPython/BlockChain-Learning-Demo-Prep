@@ -24,9 +24,9 @@ contract MultiNumberBettingV4 {
     address winner;
 
    constructor(uint8 num1, uint8 num2, uint8 num3) public {
-        storageArray[0] = num1;   // 0
-        storageArray[1] = num2;   // 5
-        storageArray[2] = num3;   // 7
+        storageArray[0] = num1;   // 1
+        storageArray[1] = num2;   // 3
+        storageArray[2] = num3;   // 9
     }  
 
     function guess(uint8 betNumber, string name) public returns(bool) {
@@ -83,9 +83,32 @@ contract MultiNumberBettingV4 {
 
   // Ex 4 
 
-  function getLastWinnerInfo() returns (winnerins winnerAddress, winnerins name, uint guess, uint timeGuessed){
+ // Remember winner holds the address of the winner so we are getting
+  // the information from the winnersMapping for the address
+  // all values will be 0x0 if winner=0x0 i.e., if there is no winner
+  function getLastWinnerInfo() public returns ( address winnerAddress1,
+                                         string  name1, 
+                                         uint guess1,
+                                         uint guessedAt1){
 
+    winnerAddress1 = winnersMapping[winner].winnerAddress;
+    name1 = winnersMapping[msg.sender].name;
+    guess1 = winnersMapping[msg.sender].guess;
+    guessedAt1 = winnersMapping[msg.sender].guessedAt;                              
+      
+  }
 
+  function checkWinning(address winnerAddress) public view returns(  address checkWinnerAddress, 
+                                                      string  checkWinnerName,
+                                                      uint checkWinnerguessVal, 
+                                                      uint checkWinnerguessedAt){
+    Winner memory winnerLocal = winnersMapping[winnerAddress];
+    if (winnerLocal.guessedAt != 0) {
+      checkWinnerAddress = winnersMapping[winnerAddress].winnerAddress;
+      checkWinnerName = winnersMapping[winnerAddress].name;
+      checkWinnerguessVal = winnersMapping[winnerAddress].guess;
+      checkWinnerguessedAt = winnersMapping[winnerAddress].guessedAt;
+    }
   }
 
 // Total Bet played in the game
