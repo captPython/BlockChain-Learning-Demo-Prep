@@ -1,13 +1,24 @@
 pragma solidity ^0.4.22;
 
-contract MultiNumberBettingV3 {
+contract MultiNumberBettingV4 {
+   
+   struct Winner {
+      address winnerAddress;
+      string name;
+      uint guess;
+      uint guessedAt;
+   }
+ 
+   // Winner winnerins;
+
+    mapping(address=>Winner) winnersMapping;
 
   // Public to generate the getters
     uint public  loserCount;
     uint public  winnerCount;
     uint public lastWinnerAt;
 
-    string lastWinnerName;
+   // string lastWinnerName;
     uint8[3] storageArray;
 
     address winner;
@@ -24,10 +35,23 @@ contract MultiNumberBettingV3 {
         if (storageArray[i] == betNumber) {
         // Increase the winner count
           winnerCount++;
-          lastWinnerName = name;
-          lastWinnerAt = block.timestamp;  // can also use now
-          winner = msg.sender;
+          //lastWinnerName = name;
+          //lastWinnerAt = block.timestamp;  // can also use now
+          //winner = msg.sender;
           
+          winnersMapping[msg.sender].winnerAddress = msg.sender;
+          winnersMapping[msg.sender].name = name;
+          winnersMapping[msg.sender].guess = betNumber;
+          winnersMapping[msg.sender].guessedAt = block.timestamp;
+
+          lastWinnerAt = block.timestamp;
+          winner = msg.sender;
+
+          // winnerins.winnerAddress = msg.sender;
+          // winnerins.name = name;
+          // winnerins.guess = betNumber;
+          // winnerins.guessedAt = block.timestamp;
+
           return true;
         } 
      }
@@ -37,7 +61,7 @@ contract MultiNumberBettingV3 {
     } 
 
   // Ex-3
-  function getLastWinner() public view returns (string) {
+ /* function getLastWinner() public view returns (string) {
 
       bytes memory nameBytes = bytes(lastWinnerName);
       // If no winner send "***"
@@ -55,6 +79,13 @@ contract MultiNumberBettingV3 {
     }
 
     return string(toReturn);
+  } */
+
+  // Ex 4 
+
+  function getLastWinnerInfo() returns (winnerins winnerAddress, winnerins name, uint guess, uint timeGuessed){
+
+
   }
 
 // Total Bet played in the game
