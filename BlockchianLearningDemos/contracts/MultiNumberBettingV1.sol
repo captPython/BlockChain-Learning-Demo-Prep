@@ -7,26 +7,20 @@ contract MultiNumberBettingV1 {
     uint8[3] storageArray;
 
     function guess(uint8 betNumber) public returns(bool) {
-      bool flag;
 
-     for(uint8 i; i < storageArray.length; i++){
+     for(uint8 i=0; i < storageArray.length; i++){
         if (storageArray[i] == betNumber) {
-          flag = true;
+        // Increase the winner count
           winnerCount++;
-          break;
-        } else {
-          flag = false;
-        }
-       
+          return true;
+        } 
      }
      
-       if (flag = false){
-          loserCount++;
-       }
-      return flag;
+    loserCount++;
+    return false;
     } 
 
-    function totalGuesses() returns (uint){
+    function totalGuesses() public returns (uint){
       return (winnerCount+loserCount);
     }
 
