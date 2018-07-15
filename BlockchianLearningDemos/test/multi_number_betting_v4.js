@@ -9,7 +9,7 @@ var MultiNumberBettingV4 = artifacts.require("./MultiNumberBettingV4.sol");
  * 5. Check if Bill is winning - should return false
  */
 
- /*
+ 
 contract('MultiNumberBettingV4', function(accounts) {
 
   var johns_address = accounts[0];
@@ -22,8 +22,9 @@ contract('MultiNumberBettingV4', function(accounts) {
       multi_number_betting_v4 = instance;
       
       // Create a winner (John) & a loser (Bob)
-      multi_number_betting_v4.guess(3,"John Miller", {from:johns_address});
+
       multi_number_betting_v4.guess(4,"Bills Davis", {from:bills_address});
+      multi_number_betting_v4.guess(3,"John Miller", {from:johns_address});
 
       // Get the get Last Winner Info
       return multi_number_betting_v4.getLastWinnerInfo.call();
@@ -48,9 +49,10 @@ contract('MultiNumberBettingV4', function(accounts) {
 });
 
 });
-*/
 
-var MultiNumberBettingV4 = artifacts.require("./MultiNumberBettingV4.sol");
+
+
+
 
 /**
  * Test Case
@@ -60,6 +62,10 @@ var MultiNumberBettingV4 = artifacts.require("./MultiNumberBettingV4.sol");
  * 4. Get last winner info - it should have Frank
  * 5. Check if Bill is winning - should return false
  */
+
+ /*
+
+var MultiNumberBettingV4 = artifacts.require("./MultiNumberBettingV4.sol");
 
 contract('MultiNumberBettingV4', function(accounts) {
 
@@ -92,7 +98,6 @@ contract('MultiNumberBettingV4', function(accounts) {
 
       // Get the last winner name
       return multi_number_betting_v4.getLastWinnerInfo.call();
-
     }).then(function(result){
       // Result is an array: address, name, guess, guessedAt
       console.log(result[0], result[1], result[2].toNumber());
@@ -106,3 +111,5 @@ contract('MultiNumberBettingV4', function(accounts) {
     });
   });
 });
+
+*/
